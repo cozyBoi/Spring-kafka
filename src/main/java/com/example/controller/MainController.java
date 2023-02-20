@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MainController {
 
     private final ProducerService producerService;
-    //private final ConsumerService consumerService;
 
     @GetMapping("/exec")
     public void exec(){
