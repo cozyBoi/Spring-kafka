@@ -9,4 +9,6 @@ import lombok.NoArgsConstructor;
 @Getter
 public class EventData {
     private String eventDB;
+    private String flowInfo;
+    private boolean build;
 }

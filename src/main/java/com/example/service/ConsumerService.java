@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat;
 @Service
 @RequiredArgsConstructor
 public class ConsumerService {
-    @KafkaListener(
+    @KafkaListener( //thread 하나 파서 계속 poll
             topics = "test",
             groupId = "1",
             containerFactory = "kafkaListenerContainerFactory"

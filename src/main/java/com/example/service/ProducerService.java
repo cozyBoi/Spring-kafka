@@ -2,14 +2,10 @@ package com.example.service;
 
 import com.example.Utils.EventData;
 import com.example.Utils.EventMsg;
-import jakarta.websocket.SendResult;
+import com.example.dto.FlowDto;
 import lombok.RequiredArgsConstructor;
-import org.apache.kafka.clients.producer.Callback;
-import org.apache.kafka.clients.producer.RecordMetadata;
 import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-import org.springframework.util.concurrent.ListenableFuture;
 
 import java.sql.Timestamp;
 
@@ -18,10 +14,10 @@ import java.sql.Timestamp;
 public class ProducerService {
     private final KafkaTemplate<String, EventMsg> kafkaTemplate;
 
-    public void send(){
+    public void send(FlowDto flowDto){
         EventMsg eventMsg = EventMsg.builder()
                 .eventType("testEvent")
-                .eventData(new EventData("testDB"))
+                .eventData(new EventData("testDB", flowDto.getFlowInfo(), flowDto.isBuild()))
                 .issueTime(new Timestamp(System.currentTimeMillis()))
                 .build();
         kafkaTemplate.send("test", eventMsg);
